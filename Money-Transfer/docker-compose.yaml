@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  server:
+    image: freedom2121/editor:server
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - host
+
+  client:
+    image: freedom2121/editor:client
+    ports:
+      - "3000:3000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - host
+
+  visualizer:
+    image: dockersamples/visualizer
+    ports:
+      - "8080:8080"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - host
+
+networks:
+  host:
+    name: host
+    external: true
+
+
+
+
+
+
+
+
+

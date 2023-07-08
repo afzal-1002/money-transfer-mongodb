@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri : mongodb+srv://admin:admin@money-transfer-db.u7jkyys.mongodb.net/?retryWrites=true&w=majority
+      database : Money-Transfer-db
